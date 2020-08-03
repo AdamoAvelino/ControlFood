@@ -1,0 +1,21 @@
+version: "3.0"
+services:
+  sysfood-apache:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./code:/var/www/html
+    depends_on:
+      - sysfood-mysql
+  sysfood-mysql:
+    image: mysql:5.7.22
+    command: --innodb-use-native-aio=0
+    ports:
+      - "3306"
+    volumes:
+      - "./.docker/dbdata:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: sysfoodfood
+      MYSQL_ROOT_PASSWORD: secret
+      
