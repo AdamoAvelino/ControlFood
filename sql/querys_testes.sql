@@ -34,5 +34,5 @@ FROM produtos p
 JOIN unidade_medida um ON um.id = p.id_unidade_medida
 LEFT JOIN entrada en ON en.id_produto = p.id
 LEFT JOIN nota_fiscal_items nfi ON nfi.id = en.id_nota_fiscal_item
-LEFT JOIN saida s ON s.id = en.id_saida
+LEFT JOIN saida s ON s.id_entrada = en.id
 GROUP BY p.id;
